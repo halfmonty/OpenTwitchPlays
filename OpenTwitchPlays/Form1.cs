@@ -106,7 +106,7 @@ namespace OpenTwitchPlays
                 Stop();
 
             SaveStatus();
-            Close();
+            this.Close();
         }
 
         /// <summary>
@@ -590,7 +590,10 @@ namespace OpenTwitchPlays
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            SaveAndQuit();
+            if (timerProcessMessages.Enabled)
+                Stop();
+
+            SaveStatus();
         }
 
         private void menuAutosave_Click(object sender, EventArgs e)
@@ -709,6 +712,12 @@ namespace OpenTwitchPlays
 
                 if (String.IsNullOrEmpty(textCommand.Text))
                     throw new InvalidOperationException("the command must be at least one character long");
+
+                for (int i = 0; i < listKeyBindings.Items.Count; i++)
+                {
+                    if (listKeyBindings.Items[i].Text == textCommand.Text)
+                        throw new InvalidOperationException("this command already exists");
+                }
 
                 AddKeyBinding(textCommand.Text, thekey, delay);
             }
