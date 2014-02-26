@@ -39,4 +39,3 @@ Known issues:
 * "How do I backup my uptime or settings?" - Uptime & Keystrokes: status.bin, Settings: settings.bin
 * "OpenTwitchPlays crashes on startup! / I'm getting some weird exception error" - Your settings might be corrupt. Try deleting settings.bin. If the problem continues, try deleting status.bin.
 * "My game is not registering the key presses!" - Make sure that the delay of your key bindings is high enough. Make sure that you selected the correct keys. Try disabling "Use PostMessage" in Settings. Make sure that your HexChat client is connected to the correct channel and that the commands are logging in the Command log. Some games might have protection against keystroke emulation and will therefore not work with OpenTwitchPlays.
-* "Adding identical commands causes errors" - This will be prevented in the next revision.
