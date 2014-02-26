@@ -244,9 +244,14 @@ namespace OpenTwitchPlays
         [DllImport("user32.dll", SetLastError = true)]
         public static extern bool PostMessage(IntPtr hWnd, uint Msg, int wParam, int lParam);
 
-        [DllImport("User32.dll")]
+        [DllImport("user32.dll")]
         public static extern Int32 SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         public const uint WM_KEYDOWN = 0x0100;
         public const uint WM_KEYUP = 0x0101;
+
+        [DllImport("user32.dll")]
+        public static extern void keybd_event(byte bVk, byte bScan, uint dwFlags,
+           UIntPtr dwExtraInfo);
+        public const uint KEYEVENTF_KEYUP = 0x0002;
     }
 }

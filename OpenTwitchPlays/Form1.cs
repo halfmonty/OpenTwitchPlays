@@ -398,7 +398,12 @@ namespace OpenTwitchPlays
                 if (menuUsePostMessage.Checked)
                     gamewindow.SendMinimizedKeystroke(key, delay);
                 else
-                    GameWindow.SendGlobalKeystroke(key, delay);
+                {
+                    if (menuUseSendKeys.Checked)
+                        GameWindow.SendGlobalKeystroke(key, delay);
+                    else
+                        GameWindow.SendGlobalKeybdEvent(key, delay);
+                }
             }
 
             commandsdone++; // this is for the command/s counter
@@ -740,6 +745,11 @@ namespace OpenTwitchPlays
         private void menuSaveConfig_Click(object sender, EventArgs e)
         {
             SaveSettings();
+        }
+
+        private void menuUseSendKeys_Click(object sender, EventArgs e)
+        {
+            menuUseSendKeys.Checked ^= true;
         }
     }
 }

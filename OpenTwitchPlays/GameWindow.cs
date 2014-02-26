@@ -68,9 +68,29 @@ namespace OpenTwitchPlays
             return true;
         }
 
+        /// <summary>
+        /// Simulates a global key being held down by using keybd_event.
+        /// </summary>
+        /// <param name="key">The desired key.</param>
+        /// <param name="delay">How long the key will be held down (in milliseconds).</param>
+        /// <returns>true if the keystroke is successfully sent, false if the key is invalid.</returns>
+        public static bool SendGlobalKeybdEvent(GameKey key, int delay)
+        {
+            if (key == GameKey.Invalid)
+                return false;
+
+            WinAPI.keybd_event((byte)key.VirtualKey, 0, 0, UIntPtr.Zero);
+            Thread.Sleep(delay);
+            WinAPI.keybd_event((byte)key.VirtualKey, 0, WinAPI.KEYEVENTF_KEYUP, UIntPtr.Zero);
+            Thread.Sleep(100);
+
+            return true;
+        }
         
         /// <summary>
-        /// Simulates a global keystroke in the system.
+        /// Simulates a global keystroke in the system by using SendKeys. 
+        /// This is inaccurate as it spams the key to make it register as being held down.
+        /// Only use this is SendGlobalKeybdEvent fails.
         /// </summary>
         /// <param name="key">The desired key.</param>
         /// <param name="delay">How long the key will be held down (in milliseconds).</param>

@@ -51,6 +51,7 @@
             this.menuItem2 = new System.Windows.Forms.MenuItem();
             this.menuAutosave = new System.Windows.Forms.MenuItem();
             this.menuUsePostMessage = new System.Windows.Forms.MenuItem();
+            this.menuUseSendKeys = new System.Windows.Forms.MenuItem();
             this.menuItem8 = new System.Windows.Forms.MenuItem();
             this.menuAbout = new System.Windows.Forms.MenuItem();
             this.statusBar1 = new System.Windows.Forms.StatusBar();
@@ -245,7 +246,8 @@
             this.menuItem2.Index = 2;
             this.menuItem2.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.menuAutosave,
-            this.menuUsePostMessage});
+            this.menuUsePostMessage,
+            this.menuUseSendKeys});
             this.menuItem2.Text = "Settings";
             // 
             // menuAutosave
@@ -260,6 +262,12 @@
             this.menuUsePostMessage.Index = 1;
             this.menuUsePostMessage.Text = "Use PostMessage";
             this.menuUsePostMessage.Click += new System.EventHandler(this.menuUsePostMessage_Click);
+            // 
+            // menuUseSendKeys
+            // 
+            this.menuUseSendKeys.Index = 2;
+            this.menuUseSendKeys.Text = "Use SendKeys (not recommended)";
+            this.menuUseSendKeys.Click += new System.EventHandler(this.menuUseSendKeys_Click);
             // 
             // menuItem8
             // 
@@ -571,6 +579,7 @@
         private System.Windows.Forms.TextBox textDelay;
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.MenuItem menuSaveConfig;
+        private System.Windows.Forms.MenuItem menuUseSendKeys;
     }
 }
 
