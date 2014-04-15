@@ -624,11 +624,11 @@ namespace OpenTwitchPlays
                 if (firsttime)
                 {
                     while (!sr.EndOfStream) // skip old logs
-                        theline = sr.ReadLine();
+                        theline = sr.ReadLine().ToLower();
                 }
                 else
                 {
-                    theline = sr.ReadLine();
+                    theline = sr.ReadLine().ToLower();
                     HandleChatLine(theline);
                     OutputStatsToFile();
                 }
