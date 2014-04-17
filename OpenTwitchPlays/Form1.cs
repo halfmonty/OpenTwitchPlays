@@ -724,7 +724,7 @@ namespace OpenTwitchPlays
                         throw new InvalidOperationException("this command already exists");
                 }
 
-                AddKeyBinding(textCommand.Text, thekey, delay);
+                AddKeyBinding(textCommand.Text.toLower(), thekey, delay);
             }
             catch (InvalidOperationException shit)
             {
