@@ -33,11 +33,12 @@ using System.Runtime.InteropServices;
 // YY.MM.DD.RR  -   Programmer  -   Alterations
 //                                  Multiline Comment
 // [assembly: AssemblyVersion("YY.MM.DD.RR")]
-[assembly: AssemblyVersion("14.06.19.01")]
-[assembly: AssemblyFileVersion("14.06.19.01")]
+[assembly: AssemblyVersion("14.06.20.01")]
+[assembly: AssemblyFileVersion("14.06.20.01")]
 
 // Historic Version
 // 14.06.19.01  -   Gabriel Guaitolini [Fuyangli]   -   Added Assembly Versioning
+// 14.06.20.01  -   Franc[e]sco                     -   Added toggle for multiple commands
 
 
 

@@ -68,6 +68,7 @@ namespace OpenTwitchPlays
                 public string command; // command text
                 public int delay; // delay in millisecs
                 public ushort vkey; // virtual key code (will be used to retrieve the actual GameKey)
+                public bool multiplekeypresses; // allow appending a number to the command for multiple key presses
             }
 
             public List<KeyBinding> binds = new List<KeyBinding>(); // list of all the keybindings
@@ -149,6 +150,7 @@ namespace OpenTwitchPlays
                 bind.command = theitem.Text;
                 bind.vkey = ((GameKey)theitem.Tag).VirtualKey;
                 bind.delay = Convert.ToInt32(theitem.SubItems[2].Text);
+                bind.multiplekeypresses = Convert.ToBoolean(theitem.SubItems[3].Text);
                 cfg.binds.Add(bind);
             }
 
@@ -183,7 +185,7 @@ namespace OpenTwitchPlays
 
             // key bindings
             foreach (Settings.KeyBinding bind in cfg.binds)
-                AddKeyBinding(bind.command, GameKey.ByVKey(bind.vkey), bind.delay);
+                AddKeyBinding(bind.command, GameKey.ByVKey(bind.vkey), bind.delay, bind.multiplekeypresses);
         }
 
         /// <summary>
@@ -318,6 +320,7 @@ namespace OpenTwitchPlays
             GameKey key = GameKey.Invalid; // will contain the requested keystroke if the message is a command
             int times = 1; // will contain how many times the key will be pressed if the msg is a command
             int delay = 0; // will contain the duration of the keystroke if the msg is a command
+            bool allowmultiple = false;
 
             string[] splitted = line.Split('\t'); // split username from the message body
 
@@ -375,6 +378,7 @@ namespace OpenTwitchPlays
                     // command found! retrieve key and duration
                     key = (GameKey)item.Tag;
                     delay = Convert.ToInt32(item.SubItems[2].Text);
+                    allowmultiple = Convert.ToBoolean(item.SubItems[3].Text);
                     break;
                 }
             }
@@ -384,6 +388,9 @@ namespace OpenTwitchPlays
 
             if (delay <= 0) // invalid delay, should never happen
                 return;
+
+            if (!allowmultiple && times > 1)
+                times = 1;
 
             // should never happen if ResetKeys is properly called when it should
             if (!st.keypresses.ContainsKey(msgbody))
@@ -532,11 +539,13 @@ namespace OpenTwitchPlays
         /// <param name="command">Command text</param>
         /// <param name="thekey">Desired key</param>
         /// <param name="delay">How long the key will be held down</param>
-        protected void AddKeyBinding(string command, GameKey thekey, int delay)
+        /// <param name="multiplekeypresses">Allow appending a number to the command for multiple key presses.</param>
+        protected void AddKeyBinding(string command, GameKey thekey, int delay, bool multiplekeypresses)
         {
             var item = listKeyBindings.Items.Add(command);
             item.SubItems.Add(thekey.Name);
             item.SubItems.Add(delay.ToString());
+            item.SubItems.Add(multiplekeypresses.ToString());
             item.Tag = thekey;
         }
 
@@ -724,7 +733,7 @@ namespace OpenTwitchPlays
                         throw new InvalidOperationException("this command already exists");
                 }
 
-                AddKeyBinding(textCommand.Text.toLower(), thekey, delay);
+                AddKeyBinding(textCommand.Text.ToLower(), thekey, delay, checkMultipleKeyPresses.Checked);
             }
             catch (InvalidOperationException shit)
             {

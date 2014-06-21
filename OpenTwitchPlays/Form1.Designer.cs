@@ -78,6 +78,8 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.checkMultipleKeyPresses = new System.Windows.Forms.CheckBox();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -90,7 +92,7 @@
             this.listBoxCommands.FormattingEnabled = true;
             this.listBoxCommands.Location = new System.Drawing.Point(10, 20);
             this.listBoxCommands.Name = "listBoxCommands";
-            this.listBoxCommands.Size = new System.Drawing.Size(500, 77);
+            this.listBoxCommands.Size = new System.Drawing.Size(500, 99);
             this.listBoxCommands.TabIndex = 0;
             // 
             // groupBox1
@@ -99,10 +101,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.listBoxCommands);
-            this.groupBox1.Location = new System.Drawing.Point(12, 419);
+            this.groupBox1.Location = new System.Drawing.Point(12, 442);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(10, 7, 10, 10);
-            this.groupBox1.Size = new System.Drawing.Size(520, 107);
+            this.groupBox1.Size = new System.Drawing.Size(520, 129);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Command log";
@@ -284,7 +286,7 @@
             // 
             // statusBar1
             // 
-            this.statusBar1.Location = new System.Drawing.Point(0, 539);
+            this.statusBar1.Location = new System.Drawing.Point(0, 584);
             this.statusBar1.Name = "statusBar1";
             this.statusBar1.Size = new System.Drawing.Size(544, 22);
             this.statusBar1.TabIndex = 3;
@@ -369,6 +371,7 @@
             // 
             this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.checkMultipleKeyPresses);
             this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Controls.Add(this.textDelay);
             this.groupBox4.Controls.Add(this.label5);
@@ -381,7 +384,7 @@
             this.groupBox4.Controls.Add(this.listKeyBindings);
             this.groupBox4.Location = new System.Drawing.Point(12, 213);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(520, 200);
+            this.groupBox4.Size = new System.Drawing.Size(520, 223);
             this.groupBox4.TabIndex = 5;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Key bindings";
@@ -478,7 +481,8 @@
             this.listKeyBindings.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
-            this.columnHeader3});
+            this.columnHeader3,
+            this.columnHeader4});
             this.listKeyBindings.FullRowSelect = true;
             this.listKeyBindings.Location = new System.Drawing.Point(10, 19);
             this.listKeyBindings.Name = "listKeyBindings";
@@ -490,23 +494,39 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Command";
-            this.columnHeader1.Width = 173;
+            this.columnHeader1.Width = 127;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Key";
-            this.columnHeader2.Width = 174;
+            this.columnHeader2.Width = 128;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Delay";
             this.columnHeader3.Width = 86;
             // 
+            // checkMultipleKeyPresses
+            // 
+            this.checkMultipleKeyPresses.AutoSize = true;
+            this.checkMultipleKeyPresses.Checked = true;
+            this.checkMultipleKeyPresses.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkMultipleKeyPresses.Location = new System.Drawing.Point(15, 195);
+            this.checkMultipleKeyPresses.Name = "checkMultipleKeyPresses";
+            this.checkMultipleKeyPresses.Size = new System.Drawing.Size(329, 17);
+            this.checkMultipleKeyPresses.TabIndex = 10;
+            this.checkMultipleKeyPresses.Text = "Allow multiple keypresses for this command (e.g. up9, down8, ...)";
+            this.checkMultipleKeyPresses.UseVisualStyleBackColor = true;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Mult.";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(544, 561);
+            this.ClientSize = new System.Drawing.Size(544, 606);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.statusBar1);
@@ -580,6 +600,8 @@
         private System.Windows.Forms.ColumnHeader columnHeader3;
         private System.Windows.Forms.MenuItem menuSaveConfig;
         private System.Windows.Forms.MenuItem menuUseSendKeys;
+        private System.Windows.Forms.CheckBox checkMultipleKeyPresses;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
     }
 }
 
