@@ -99,6 +99,11 @@ namespace OpenTwitchPlays
             notifyIcon.Icon = Icon; // In order to the tray icon appear, assign an icon to it!
         }
 
+        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Show();
+        }
+
         /// <summary>
         /// Stops the bot, saves the current status and quits the program.
         /// </summary>
@@ -568,7 +573,6 @@ namespace OpenTwitchPlays
         private void menuExit_Click(object sender, EventArgs e)
         {
             SaveAndQuit();
-            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -608,7 +612,7 @@ namespace OpenTwitchPlays
 
         private void Form1_Hiding(object sender, FormClosingEventArgs e) {
             e.Cancel = true;
-            notifyIcon.ShowBalloonTip(2000, null, "OpenTwitchPlay is Running", ToolTipIcon.Info);
+            notifyIcon.ShowBalloonTip(2000, null, "OpenTwitchPlays is still running", ToolTipIcon.Info);
             Hide();
         }
 

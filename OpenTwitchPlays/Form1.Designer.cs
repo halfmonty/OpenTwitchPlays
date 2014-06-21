@@ -82,9 +82,9 @@
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStripTray = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemConfigure = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -533,6 +533,7 @@
             this.notifyIcon.ContextMenuStrip = this.contextMenuStripTray;
             this.notifyIcon.Text = "OpenTwitchPlays";
             this.notifyIcon.Visible = true;
+            this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
             // 
             // contextMenuStripTray
             // 
@@ -542,13 +543,6 @@
             this.toolStripMenuItemExit});
             this.contextMenuStripTray.Name = "contextMenuStripTray";
             this.contextMenuStripTray.Size = new System.Drawing.Size(128, 54);
-            // 
-            // toolStripMenuItemExit
-            // 
-            this.toolStripMenuItemExit.Name = "toolStripMenuItemExit";
-            this.toolStripMenuItemExit.Size = new System.Drawing.Size(127, 22);
-            this.toolStripMenuItemExit.Text = "Exit";
-            this.toolStripMenuItemExit.Click += new System.EventHandler(this.menuExit_Click);
             // 
             // toolStripMenuItemConfigure
             // 
@@ -561,6 +555,13 @@
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(124, 6);
+            // 
+            // toolStripMenuItemExit
+            // 
+            this.toolStripMenuItemExit.Name = "toolStripMenuItemExit";
+            this.toolStripMenuItemExit.Size = new System.Drawing.Size(127, 22);
+            this.toolStripMenuItemExit.Text = "Exit";
+            this.toolStripMenuItemExit.Click += new System.EventHandler(this.menuExit_Click);
             // 
             // Form1
             // 
