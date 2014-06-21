@@ -108,7 +108,9 @@ namespace OpenTwitchPlays
                 Stop();
 
             SaveStatus();
-            this.Close();
+            FormClosing -= Form1_Hiding; // Get rid of usual hide function of the form
+            FormClosing += Form1_FormClosing; // Introduce the real close application event
+            Close();
         }
 
         /// <summary>
@@ -566,6 +568,7 @@ namespace OpenTwitchPlays
         private void menuExit_Click(object sender, EventArgs e)
         {
             SaveAndQuit();
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -601,6 +604,12 @@ namespace OpenTwitchPlays
         private void menuReset_Click(object sender, EventArgs e)
         {
             Reset();
+        }
+
+        private void Form1_Hiding(object sender, FormClosingEventArgs e) {
+            e.Cancel = true;
+            notifyIcon.ShowBalloonTip(2000, null, "OpenTwitchPlay is Running", ToolTipIcon.Info);
+            Hide();
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -760,6 +769,10 @@ namespace OpenTwitchPlays
         private void menuUseSendKeys_Click(object sender, EventArgs e)
         {
             menuUseSendKeys.Checked ^= true;
+        }
+
+        private void Form1_Show(object sender, EventArgs e) {
+            Show();
         }
     }
 }
