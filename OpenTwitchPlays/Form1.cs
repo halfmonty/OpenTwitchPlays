@@ -96,6 +96,12 @@ namespace OpenTwitchPlays
         public Form1()
         {
             InitializeComponent();
+            notifyIcon.Icon = Icon; // In order to the tray icon appear, assign an icon to it!
+        }
+
+        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Show();
         }
 
         /// <summary>
@@ -107,7 +113,9 @@ namespace OpenTwitchPlays
                 Stop();
 
             SaveStatus();
-            this.Close();
+            FormClosing -= Form1_Hiding; // Get rid of usual hide function of the form
+            FormClosing += Form1_FormClosing; // Introduce the real close application event
+            Close();
         }
 
         /// <summary>
@@ -602,6 +610,12 @@ namespace OpenTwitchPlays
             Reset();
         }
 
+        private void Form1_Hiding(object sender, FormClosingEventArgs e) {
+            e.Cancel = true;
+            notifyIcon.ShowBalloonTip(2000, null, "OpenTwitchPlays is still running", ToolTipIcon.Info);
+            Hide();
+        }
+
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (timerProcessMessages.Enabled)
@@ -759,6 +773,10 @@ namespace OpenTwitchPlays
         private void menuUseSendKeys_Click(object sender, EventArgs e)
         {
             menuUseSendKeys.Checked ^= true;
+        }
+
+        private void Form1_Show(object sender, EventArgs e) {
+            Show();
         }
     }
 }

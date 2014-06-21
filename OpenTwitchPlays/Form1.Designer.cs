@@ -65,6 +65,7 @@
             this.textAutosaveInterval = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.checkMultipleKeyPresses = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textDelay = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -78,12 +79,17 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.checkMultipleKeyPresses = new System.Windows.Forms.CheckBox();
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStripTray = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItemConfigure = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuItemExit = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.contextMenuStripTray.SuspendLayout();
             this.SuspendLayout();
             // 
             // listBoxCommands
@@ -389,6 +395,18 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Key bindings";
             // 
+            // checkMultipleKeyPresses
+            // 
+            this.checkMultipleKeyPresses.AutoSize = true;
+            this.checkMultipleKeyPresses.Checked = true;
+            this.checkMultipleKeyPresses.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkMultipleKeyPresses.Location = new System.Drawing.Point(15, 195);
+            this.checkMultipleKeyPresses.Name = "checkMultipleKeyPresses";
+            this.checkMultipleKeyPresses.Size = new System.Drawing.Size(329, 17);
+            this.checkMultipleKeyPresses.TabIndex = 10;
+            this.checkMultipleKeyPresses.Text = "Allow multiple keypresses for this command (e.g. up9, down8, ...)";
+            this.checkMultipleKeyPresses.UseVisualStyleBackColor = true;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -506,21 +524,44 @@
             this.columnHeader3.Text = "Delay";
             this.columnHeader3.Width = 86;
             // 
-            // checkMultipleKeyPresses
-            // 
-            this.checkMultipleKeyPresses.AutoSize = true;
-            this.checkMultipleKeyPresses.Checked = true;
-            this.checkMultipleKeyPresses.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkMultipleKeyPresses.Location = new System.Drawing.Point(15, 195);
-            this.checkMultipleKeyPresses.Name = "checkMultipleKeyPresses";
-            this.checkMultipleKeyPresses.Size = new System.Drawing.Size(329, 17);
-            this.checkMultipleKeyPresses.TabIndex = 10;
-            this.checkMultipleKeyPresses.Text = "Allow multiple keypresses for this command (e.g. up9, down8, ...)";
-            this.checkMultipleKeyPresses.UseVisualStyleBackColor = true;
-            // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Mult.";
+            // 
+            // notifyIcon
+            // 
+            this.notifyIcon.ContextMenuStrip = this.contextMenuStripTray;
+            this.notifyIcon.Text = "OpenTwitchPlays";
+            this.notifyIcon.Visible = true;
+            this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
+            // 
+            // contextMenuStripTray
+            // 
+            this.contextMenuStripTray.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemConfigure,
+            this.toolStripSeparator1,
+            this.toolStripMenuItemExit});
+            this.contextMenuStripTray.Name = "contextMenuStripTray";
+            this.contextMenuStripTray.Size = new System.Drawing.Size(128, 54);
+            // 
+            // toolStripMenuItemConfigure
+            // 
+            this.toolStripMenuItemConfigure.Name = "toolStripMenuItemConfigure";
+            this.toolStripMenuItemConfigure.Size = new System.Drawing.Size(127, 22);
+            this.toolStripMenuItemConfigure.Text = "Configure";
+            this.toolStripMenuItemConfigure.Click += new System.EventHandler(this.Form1_Show);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(124, 6);
+            // 
+            // toolStripMenuItemExit
+            // 
+            this.toolStripMenuItemExit.Name = "toolStripMenuItemExit";
+            this.toolStripMenuItemExit.Size = new System.Drawing.Size(127, 22);
+            this.toolStripMenuItemExit.Text = "Exit";
+            this.toolStripMenuItemExit.Click += new System.EventHandler(this.menuExit_Click);
             // 
             // Form1
             // 
@@ -537,7 +578,7 @@
             this.MinimumSize = new System.Drawing.Size(560, 600);
             this.Name = "Form1";
             this.Text = "OpenTwitchPlays";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_Hiding);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
@@ -546,6 +587,7 @@
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.contextMenuStripTray.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -560,7 +602,6 @@
         private System.Windows.Forms.Label labelCommandsPerSec;
         private System.Windows.Forms.Label labelUptime;
         private System.Windows.Forms.Label labelGameWindow;
-        private System.Windows.Forms.MainMenu mainMenu1;
         private System.Windows.Forms.MenuItem menuItem1;
         private System.Windows.Forms.MenuItem menuOpenSource;
         private System.Windows.Forms.MenuItem menuExit;
@@ -602,6 +643,12 @@
         private System.Windows.Forms.MenuItem menuUseSendKeys;
         private System.Windows.Forms.CheckBox checkMultipleKeyPresses;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.NotifyIcon notifyIcon;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripTray;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemExit;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemConfigure;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        public System.Windows.Forms.MainMenu mainMenu1;
     }
 }
 
