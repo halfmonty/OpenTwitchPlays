@@ -65,6 +65,7 @@
             this.textAutosaveInterval = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.checkMultipleKeyPresses = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textDelay = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -78,8 +79,8 @@
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.checkMultipleKeyPresses = new System.Windows.Forms.CheckBox();
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -389,6 +390,18 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Key bindings";
             // 
+            // checkMultipleKeyPresses
+            // 
+            this.checkMultipleKeyPresses.AutoSize = true;
+            this.checkMultipleKeyPresses.Checked = true;
+            this.checkMultipleKeyPresses.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkMultipleKeyPresses.Location = new System.Drawing.Point(15, 195);
+            this.checkMultipleKeyPresses.Name = "checkMultipleKeyPresses";
+            this.checkMultipleKeyPresses.Size = new System.Drawing.Size(329, 17);
+            this.checkMultipleKeyPresses.TabIndex = 10;
+            this.checkMultipleKeyPresses.Text = "Allow multiple keypresses for this command (e.g. up9, down8, ...)";
+            this.checkMultipleKeyPresses.UseVisualStyleBackColor = true;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -506,21 +519,14 @@
             this.columnHeader3.Text = "Delay";
             this.columnHeader3.Width = 86;
             // 
-            // checkMultipleKeyPresses
-            // 
-            this.checkMultipleKeyPresses.AutoSize = true;
-            this.checkMultipleKeyPresses.Checked = true;
-            this.checkMultipleKeyPresses.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.checkMultipleKeyPresses.Location = new System.Drawing.Point(15, 195);
-            this.checkMultipleKeyPresses.Name = "checkMultipleKeyPresses";
-            this.checkMultipleKeyPresses.Size = new System.Drawing.Size(329, 17);
-            this.checkMultipleKeyPresses.TabIndex = 10;
-            this.checkMultipleKeyPresses.Text = "Allow multiple keypresses for this command (e.g. up9, down8, ...)";
-            this.checkMultipleKeyPresses.UseVisualStyleBackColor = true;
-            // 
             // columnHeader4
             // 
             this.columnHeader4.Text = "Mult.";
+            // 
+            // notifyIcon
+            // 
+            this.notifyIcon.Text = "Open Twitch Plays";
+            this.notifyIcon.Visible = true;
             // 
             // Form1
             // 
@@ -602,6 +608,7 @@
         private System.Windows.Forms.MenuItem menuUseSendKeys;
         private System.Windows.Forms.CheckBox checkMultipleKeyPresses;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.NotifyIcon notifyIcon;
     }
 }
 

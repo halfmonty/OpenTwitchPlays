@@ -96,6 +96,7 @@ namespace OpenTwitchPlays
         public Form1()
         {
             InitializeComponent();
+            notifyIcon.Icon = Icon; // In order to the tray icon appear, assign an icon to it!
         }
 
         /// <summary>
