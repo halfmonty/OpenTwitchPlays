@@ -57,14 +57,15 @@ namespace OpenTwitchPlays
         /// <returns>true if the keystroke is successfully sent, false if the key is invalid.</returns>
         public bool SendMinimizedKeystroke(GameKey key, int milliseconds)
         {
-            if (key == GameKey.Invalid)
-                return false;
 
-            WinAPI.PostMessage(handle, WinAPI.WM_KEYDOWN, key.VirtualKey, WinAPI.MapVirtualKey(key.VirtualKey, 0) << 16);
-            Thread.Sleep(TimeSpan.FromMilliseconds(milliseconds));
-            WinAPI.PostMessage(handle, WinAPI.WM_KEYUP, key.VirtualKey, WinAPI.MapVirtualKey(key.VirtualKey, 0) << 16);
-            Thread.Sleep(100);
+                if (key == GameKey.Invalid)
+                    return false;
 
+                WinAPI.PostMessage(handle, WinAPI.WM_KEYDOWN, key.VirtualKey, WinAPI.MapVirtualKey(key.VirtualKey, 0) << 16);
+                Thread.Sleep(TimeSpan.FromMilliseconds(milliseconds));
+                WinAPI.PostMessage(handle, WinAPI.WM_KEYUP, key.VirtualKey, WinAPI.MapVirtualKey(key.VirtualKey, 0) << 16);
+                //Thread.Sleep(100);
+            
             return true;
         }
 
@@ -74,15 +75,35 @@ namespace OpenTwitchPlays
         /// <param name="key">The desired key.</param>
         /// <param name="delay">How long the key will be held down (in milliseconds).</param>
         /// <returns>true if the keystroke is successfully sent, false if the key is invalid.</returns>
-        public static bool SendGlobalKeybdEvent(GameKey key, int delay)
+        public static bool SendGlobalKeybdEvent(GameKey[] key, int delay)
         {
-            if (key == GameKey.Invalid)
+            if (key[0] == GameKey.Invalid)
                 return false;
-
-            WinAPI.keybd_event((byte)key.VirtualKey, 0, 0, UIntPtr.Zero);
-            Thread.Sleep(delay);
-            WinAPI.keybd_event((byte)key.VirtualKey, 0, WinAPI.KEYEVENTF_KEYUP, UIntPtr.Zero);
-            Thread.Sleep(100);
+            if (key.Length == 1)
+            {
+                WinAPI.keybd_event((byte)key[0].VirtualKey, 0, 0, UIntPtr.Zero);
+                Thread.Sleep(delay);
+                WinAPI.keybd_event((byte)key[0].VirtualKey, 0, WinAPI.KEYEVENTF_KEYUP, UIntPtr.Zero);
+                Thread.Sleep(100);
+            }
+            else
+            {
+                //foreach (GameKey k in key)
+                //{
+                //    WinAPI.keybd_event((byte)k.VirtualKey, 0, 0, UIntPtr.Zero);
+                //    Thread.Sleep(delay);
+                //    WinAPI.keybd_event((byte)k.VirtualKey, 0, WinAPI.KEYEVENTF_KEYUP, UIntPtr.Zero);
+                //}
+                WinAPI.keybd_event((byte)key[0].VirtualKey, 0, 0, UIntPtr.Zero);
+                Thread.Sleep(delay);
+                for (int i = 1; i < key.Length; i++)
+                {
+                    WinAPI.keybd_event((byte)key[i].VirtualKey, 0, 0, UIntPtr.Zero);
+                    Thread.Sleep(delay);
+                    WinAPI.keybd_event((byte)key[i - 1].VirtualKey, 0, WinAPI.KEYEVENTF_KEYUP, UIntPtr.Zero);                   
+                }
+                WinAPI.keybd_event((byte)key[key.Length-1].VirtualKey, 0, WinAPI.KEYEVENTF_KEYUP, UIntPtr.Zero);
+            }
 
             return true;
         }

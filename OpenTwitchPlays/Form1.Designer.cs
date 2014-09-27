@@ -65,13 +65,26 @@
             this.textAutosaveInterval = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.checkBoxCombo = new System.Windows.Forms.CheckBox();
             this.checkMultipleKeyPresses = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.textDelay = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.buttonClearKeyBindings = new System.Windows.Forms.Button();
             this.buttonRemoveKeyBinding = new System.Windows.Forms.Button();
+            this.comboKeyBindings7 = new System.Windows.Forms.ComboBox();
+            this.comboKeyBindings5 = new System.Windows.Forms.ComboBox();
+            this.comboKeyBindings3 = new System.Windows.Forms.ComboBox();
+            this.comboKeyBindings6 = new System.Windows.Forms.ComboBox();
+            this.comboKeyBindings4 = new System.Windows.Forms.ComboBox();
+            this.comboKeyBindings2 = new System.Windows.Forms.ComboBox();
             this.comboKeyBindings = new System.Windows.Forms.ComboBox();
             this.textCommand = new System.Windows.Forms.TextBox();
             this.buttonAddKeyBinding = new System.Windows.Forms.Button();
@@ -98,27 +111,27 @@
             this.listBoxCommands.FormattingEnabled = true;
             this.listBoxCommands.Location = new System.Drawing.Point(10, 20);
             this.listBoxCommands.Name = "listBoxCommands";
-            this.listBoxCommands.Size = new System.Drawing.Size(500, 99);
+            this.listBoxCommands.Size = new System.Drawing.Size(500, 63);
             this.listBoxCommands.TabIndex = 0;
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+                        | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.listBoxCommands);
-            this.groupBox1.Location = new System.Drawing.Point(12, 442);
+            this.groupBox1.Location = new System.Drawing.Point(12, 484);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(10, 7, 10, 10);
-            this.groupBox1.Size = new System.Drawing.Size(520, 129);
+            this.groupBox1.Size = new System.Drawing.Size(520, 93);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Command log";
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.Controls.Add(this.labelGameWindow);
             this.groupBox2.Controls.Add(this.labelSourceFile);
             this.groupBox2.Controls.Add(this.labelKeyPresses);
@@ -170,8 +183,8 @@
             // 
             // labelUptime
             // 
-            this.labelUptime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelUptime.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.labelUptime.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelUptime.Location = new System.Drawing.Point(9, 18);
             this.labelUptime.Name = "labelUptime";
@@ -292,7 +305,7 @@
             // 
             // statusBar1
             // 
-            this.statusBar1.Location = new System.Drawing.Point(0, 584);
+            this.statusBar1.Location = new System.Drawing.Point(0, 590);
             this.statusBar1.Name = "statusBar1";
             this.statusBar1.Size = new System.Drawing.Size(544, 22);
             this.statusBar1.TabIndex = 3;
@@ -314,8 +327,8 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox3.Controls.Add(this.textSaveCombo);
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.label2);
@@ -375,25 +388,49 @@
             // 
             // groupBox4
             // 
-            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox4.Controls.Add(this.checkBoxCombo);
             this.groupBox4.Controls.Add(this.checkMultipleKeyPresses);
             this.groupBox4.Controls.Add(this.label6);
             this.groupBox4.Controls.Add(this.textDelay);
+            this.groupBox4.Controls.Add(this.label12);
+            this.groupBox4.Controls.Add(this.label10);
+            this.groupBox4.Controls.Add(this.label8);
+            this.groupBox4.Controls.Add(this.label11);
+            this.groupBox4.Controls.Add(this.label9);
+            this.groupBox4.Controls.Add(this.label7);
             this.groupBox4.Controls.Add(this.label5);
             this.groupBox4.Controls.Add(this.label4);
             this.groupBox4.Controls.Add(this.buttonClearKeyBindings);
             this.groupBox4.Controls.Add(this.buttonRemoveKeyBinding);
+            this.groupBox4.Controls.Add(this.comboKeyBindings7);
+            this.groupBox4.Controls.Add(this.comboKeyBindings5);
+            this.groupBox4.Controls.Add(this.comboKeyBindings3);
+            this.groupBox4.Controls.Add(this.comboKeyBindings6);
+            this.groupBox4.Controls.Add(this.comboKeyBindings4);
+            this.groupBox4.Controls.Add(this.comboKeyBindings2);
             this.groupBox4.Controls.Add(this.comboKeyBindings);
             this.groupBox4.Controls.Add(this.textCommand);
             this.groupBox4.Controls.Add(this.buttonAddKeyBinding);
             this.groupBox4.Controls.Add(this.listKeyBindings);
             this.groupBox4.Location = new System.Drawing.Point(12, 213);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(520, 223);
+            this.groupBox4.Size = new System.Drawing.Size(520, 265);
             this.groupBox4.TabIndex = 5;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Key bindings";
+            // 
+            // checkBoxCombo
+            // 
+            this.checkBoxCombo.AutoSize = true;
+            this.checkBoxCombo.Location = new System.Drawing.Point(379, 195);
+            this.checkBoxCombo.Name = "checkBoxCombo";
+            this.checkBoxCombo.Size = new System.Drawing.Size(117, 17);
+            this.checkBoxCombo.TabIndex = 11;
+            this.checkBoxCombo.Text = "Multple Key Combo";
+            this.checkBoxCombo.UseVisualStyleBackColor = true;
+            this.checkBoxCombo.CheckedChanged += new System.EventHandler(this.checkBoxCombo_CheckedChanged);
             // 
             // checkMultipleKeyPresses
             // 
@@ -423,6 +460,60 @@
             this.textDelay.Size = new System.Drawing.Size(100, 20);
             this.textDelay.TabIndex = 8;
             this.textDelay.Text = "130";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(376, 241);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(34, 13);
+            this.label12.TabIndex = 7;
+            this.label12.Text = "Key7:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(190, 241);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(34, 13);
+            this.label10.TabIndex = 7;
+            this.label10.Text = "Key5:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(12, 241);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(34, 13);
+            this.label8.TabIndex = 7;
+            this.label8.Text = "Key3:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(376, 217);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(34, 13);
+            this.label11.TabIndex = 7;
+            this.label11.Text = "Key6:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(190, 217);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(34, 13);
+            this.label9.TabIndex = 7;
+            this.label9.Text = "Key4:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(12, 217);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(34, 13);
+            this.label7.TabIndex = 7;
+            this.label7.Text = "Key2:";
             // 
             // label5
             // 
@@ -463,6 +554,72 @@
             this.buttonRemoveKeyBinding.UseVisualStyleBackColor = true;
             this.buttonRemoveKeyBinding.Click += new System.EventHandler(this.buttonRemoveKeyBinding_Click);
             // 
+            // comboKeyBindings7
+            // 
+            this.comboKeyBindings7.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboKeyBindings7.FormattingEnabled = true;
+            this.comboKeyBindings7.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.comboKeyBindings7.Location = new System.Drawing.Point(410, 238);
+            this.comboKeyBindings7.Name = "comboKeyBindings7";
+            this.comboKeyBindings7.Size = new System.Drawing.Size(100, 21);
+            this.comboKeyBindings7.TabIndex = 3;
+            this.comboKeyBindings7.SelectedIndexChanged += new System.EventHandler(this.comboKeyBindings7_SelectedIndexChanged);
+            // 
+            // comboKeyBindings5
+            // 
+            this.comboKeyBindings5.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboKeyBindings5.FormattingEnabled = true;
+            this.comboKeyBindings5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.comboKeyBindings5.Location = new System.Drawing.Point(224, 238);
+            this.comboKeyBindings5.Name = "comboKeyBindings5";
+            this.comboKeyBindings5.Size = new System.Drawing.Size(100, 21);
+            this.comboKeyBindings5.TabIndex = 3;
+            this.comboKeyBindings5.SelectedIndexChanged += new System.EventHandler(this.comboKeyBindings5_SelectedIndexChanged);
+            // 
+            // comboKeyBindings3
+            // 
+            this.comboKeyBindings3.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboKeyBindings3.FormattingEnabled = true;
+            this.comboKeyBindings3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.comboKeyBindings3.Location = new System.Drawing.Point(46, 238);
+            this.comboKeyBindings3.Name = "comboKeyBindings3";
+            this.comboKeyBindings3.Size = new System.Drawing.Size(100, 21);
+            this.comboKeyBindings3.TabIndex = 3;
+            this.comboKeyBindings3.SelectedIndexChanged += new System.EventHandler(this.comboKeyBindings3_SelectedIndexChanged);
+            // 
+            // comboKeyBindings6
+            // 
+            this.comboKeyBindings6.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboKeyBindings6.FormattingEnabled = true;
+            this.comboKeyBindings6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.comboKeyBindings6.Location = new System.Drawing.Point(410, 214);
+            this.comboKeyBindings6.Name = "comboKeyBindings6";
+            this.comboKeyBindings6.Size = new System.Drawing.Size(100, 21);
+            this.comboKeyBindings6.TabIndex = 3;
+            this.comboKeyBindings6.SelectedIndexChanged += new System.EventHandler(this.comboKeyBindings6_SelectedIndexChanged);
+            // 
+            // comboKeyBindings4
+            // 
+            this.comboKeyBindings4.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboKeyBindings4.FormattingEnabled = true;
+            this.comboKeyBindings4.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.comboKeyBindings4.Location = new System.Drawing.Point(224, 214);
+            this.comboKeyBindings4.Name = "comboKeyBindings4";
+            this.comboKeyBindings4.Size = new System.Drawing.Size(100, 21);
+            this.comboKeyBindings4.TabIndex = 3;
+            this.comboKeyBindings4.SelectedIndexChanged += new System.EventHandler(this.comboKeyBindings4_SelectedIndexChanged);
+            // 
+            // comboKeyBindings2
+            // 
+            this.comboKeyBindings2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboKeyBindings2.FormattingEnabled = true;
+            this.comboKeyBindings2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.comboKeyBindings2.Location = new System.Drawing.Point(46, 214);
+            this.comboKeyBindings2.Name = "comboKeyBindings2";
+            this.comboKeyBindings2.Size = new System.Drawing.Size(100, 21);
+            this.comboKeyBindings2.TabIndex = 3;
+            this.comboKeyBindings2.SelectedIndexChanged += new System.EventHandler(this.comboKeyBindings2_SelectedIndexChanged);
+            // 
             // comboKeyBindings
             // 
             this.comboKeyBindings.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -494,8 +651,8 @@
             // 
             // listKeyBindings
             // 
-            this.listKeyBindings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listKeyBindings.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+                        | System.Windows.Forms.AnchorStyles.Right)));
             this.listKeyBindings.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1,
             this.columnHeader2,
@@ -508,6 +665,7 @@
             this.listKeyBindings.TabIndex = 0;
             this.listKeyBindings.UseCompatibleStateImageBehavior = false;
             this.listKeyBindings.View = System.Windows.Forms.View.Details;
+            this.listKeyBindings.SelectedIndexChanged += new System.EventHandler(this.listKeyBindings_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
@@ -567,7 +725,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(544, 606);
+            this.ClientSize = new System.Drawing.Size(544, 612);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.statusBar1);
@@ -580,6 +738,7 @@
             this.Text = "OpenTwitchPlays";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_Hiding);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Resize += new System.EventHandler(this.Form1_Resize);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -649,6 +808,19 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemConfigure;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         public System.Windows.Forms.MainMenu mainMenu1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.ComboBox comboKeyBindings2;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.ComboBox comboKeyBindings7;
+        private System.Windows.Forms.ComboBox comboKeyBindings5;
+        private System.Windows.Forms.ComboBox comboKeyBindings3;
+        private System.Windows.Forms.ComboBox comboKeyBindings6;
+        private System.Windows.Forms.ComboBox comboKeyBindings4;
+        private System.Windows.Forms.CheckBox checkBoxCombo;
     }
 }
 

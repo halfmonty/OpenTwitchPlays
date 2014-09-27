@@ -68,6 +68,12 @@ namespace OpenTwitchPlays
                 public string command; // command text
                 public int delay; // delay in millisecs
                 public ushort vkey; // virtual key code (will be used to retrieve the actual GameKey)
+                public ushort vkey2;
+                public ushort vkey3;
+                public ushort vkey4;
+                public ushort vkey5;
+                public ushort vkey6;
+                public ushort vkey7;
                 public bool multiplekeypresses; // allow appending a number to the command for multiple key presses
             }
 
@@ -92,6 +98,7 @@ namespace OpenTwitchPlays
         StreamReader sr = null; // reader for the chat log file stream
         bool firsttime = true; // true if we're accessing the chat log for the first time (skips old logs)
         bool wasendofstream = false; // used to check when the EOS state changes
+        int combo = 0;  // Counts combination keys to know how many are chosen
 
         public Form1()
         {
@@ -156,7 +163,32 @@ namespace OpenTwitchPlays
                 var theitem = listKeyBindings.Items[i];
                 Settings.KeyBinding bind = new Settings.KeyBinding();
                 bind.command = theitem.Text;
-                bind.vkey = ((GameKey)theitem.Tag).VirtualKey;
+                //WinAPI.VirtualKeys[] vKeyArray = new WinAPI.VirtualKeys;                
+                bind.vkey = ((GameKey[])theitem.Tag)[0].VirtualKey;
+                if(((GameKey[])theitem.Tag).Length > 1)
+                {
+                    bind.vkey2 = ((GameKey[])theitem.Tag)[1].VirtualKey;
+                }
+                if (((GameKey[])theitem.Tag).Length > 2)
+                {
+                    bind.vkey3 = ((GameKey[])theitem.Tag)[2].VirtualKey;
+                }
+                if (((GameKey[])theitem.Tag).Length > 3)
+                {
+                    bind.vkey4 = ((GameKey[])theitem.Tag)[3].VirtualKey;
+                }
+                if (((GameKey[])theitem.Tag).Length > 4)
+                {
+                    bind.vkey5 = ((GameKey[])theitem.Tag)[4].VirtualKey;
+                }
+                if (((GameKey[])theitem.Tag).Length > 5)
+                {
+                    bind.vkey6 = ((GameKey[])theitem.Tag)[5].VirtualKey;
+                }
+                if (((GameKey[])theitem.Tag).Length > 6)
+                {
+                    bind.vkey7 = ((GameKey[])theitem.Tag)[6].VirtualKey;
+                }
                 bind.delay = Convert.ToInt32(theitem.SubItems[2].Text);
                 bind.multiplekeypresses = Convert.ToBoolean(theitem.SubItems[3].Text);
                 cfg.binds.Add(bind);
@@ -193,7 +225,51 @@ namespace OpenTwitchPlays
 
             // key bindings
             foreach (Settings.KeyBinding bind in cfg.binds)
-                AddKeyBinding(bind.command, GameKey.ByVKey(bind.vkey), bind.delay, bind.multiplekeypresses);
+            {
+                GameKey[] keys;
+                //MessageBox.Show("" + GameKey.ByVKey((ushort)1));
+                if (GameKey.ByVKey(bind.vkey) != GameKey.ByVKey((ushort)1) && GameKey.ByVKey(bind.vkey2) == GameKey.ByVKey((ushort)1))
+                {
+                    GameKey[] keysFill = { GameKey.ByVKey(bind.vkey) };
+                    keys = keysFill;
+                }
+                else if (GameKey.ByVKey(bind.vkey2) != GameKey.ByVKey((ushort)1) && GameKey.ByVKey(bind.vkey3) == GameKey.ByVKey((ushort)1))
+                {
+                    GameKey[] keysFill = { GameKey.ByVKey(bind.vkey), GameKey.ByVKey(bind.vkey2) };
+                    keys = keysFill;
+                }
+                else if (GameKey.ByVKey(bind.vkey3) != GameKey.ByVKey((ushort)1) && GameKey.ByVKey(bind.vkey4) == GameKey.ByVKey((ushort)1))
+                {
+                    GameKey[] keysFill = { GameKey.ByVKey(bind.vkey), GameKey.ByVKey(bind.vkey2), GameKey.ByVKey(bind.vkey3) };
+                    keys = keysFill;
+                }
+                else if (GameKey.ByVKey(bind.vkey4) != GameKey.ByVKey((ushort)1) && GameKey.ByVKey(bind.vkey5) == GameKey.ByVKey((ushort)1))
+                {
+                    GameKey[] keysFill = { GameKey.ByVKey(bind.vkey), GameKey.ByVKey(bind.vkey2), GameKey.ByVKey(bind.vkey3), GameKey.ByVKey(bind.vkey4) };
+                    keys = keysFill;
+                }
+                else if (GameKey.ByVKey(bind.vkey5) != GameKey.ByVKey((ushort)1) && GameKey.ByVKey(bind.vkey6) == GameKey.ByVKey((ushort)1))
+                {
+                    GameKey[] keysFill = { GameKey.ByVKey(bind.vkey), GameKey.ByVKey(bind.vkey2), GameKey.ByVKey(bind.vkey3), GameKey.ByVKey(bind.vkey4), GameKey.ByVKey(bind.vkey5) };
+                    keys = keysFill;
+                }
+                else if (GameKey.ByVKey(bind.vkey6) != GameKey.ByVKey((ushort)1) && GameKey.ByVKey(bind.vkey7) == GameKey.ByVKey((ushort)1))
+                {
+                    GameKey[] keysFill = { GameKey.ByVKey(bind.vkey), GameKey.ByVKey(bind.vkey2), GameKey.ByVKey(bind.vkey3), GameKey.ByVKey(bind.vkey4), GameKey.ByVKey(bind.vkey5), GameKey.ByVKey(bind.vkey6) };
+                    keys = keysFill;
+                }
+                else if (GameKey.ByVKey(bind.vkey7) == GameKey.ByVKey(bind.vkey))
+                {
+                    GameKey[] keysFill = { GameKey.ByVKey(bind.vkey), GameKey.ByVKey(bind.vkey2), GameKey.ByVKey(bind.vkey3), GameKey.ByVKey(bind.vkey4), GameKey.ByVKey(bind.vkey5), GameKey.ByVKey(bind.vkey6), GameKey.ByVKey(bind.vkey7) };
+                    keys = keysFill;
+                }
+                else
+                {
+                    GameKey[] keysFill = { GameKey.ByVKey(bind.vkey) };
+                    keys = keysFill;
+                }
+                AddKeyBinding(bind.command, keys, bind.delay, bind.multiplekeypresses);
+            }
         }
 
         /// <summary>
@@ -325,7 +401,7 @@ namespace OpenTwitchPlays
         {
             string msgbody = ""; // will contain the message body
             string user = ""; // will contain the username
-            GameKey key = GameKey.Invalid; // will contain the requested keystroke if the message is a command
+            GameKey[] key = {GameKey.Invalid}; // will contain the requested keystroke if the message is a command
             int times = 1; // will contain how many times the key will be pressed if the msg is a command
             int delay = 0; // will contain the duration of the keystroke if the msg is a command
             bool allowmultiple = false;
@@ -384,14 +460,14 @@ namespace OpenTwitchPlays
                 if (msgbody == item.Text)
                 {
                     // command found! retrieve key and duration
-                    key = (GameKey)item.Tag;
+                    key = (GameKey[])item.Tag;
                     delay = Convert.ToInt32(item.SubItems[2].Text);
                     allowmultiple = Convert.ToBoolean(item.SubItems[3].Text);
                     break;
                 }
             }
 
-            if (key == GameKey.Invalid) // command not found
+            if (key[0] == GameKey.Invalid) // command not found
                 return;
 
             if (delay <= 0) // invalid delay, should never happen
@@ -411,13 +487,26 @@ namespace OpenTwitchPlays
                 st.totalkeypresses++;
 
                 if (menuUsePostMessage.Checked)
-                    gamewindow.SendMinimizedKeystroke(key, delay);
+                    foreach (GameKey k in key)
+                    {
+                        gamewindow.SendMinimizedKeystroke(k, delay);
+                    }
                 else
                 {
                     if (menuUseSendKeys.Checked)
-                        GameWindow.SendGlobalKeystroke(key, delay);
+                    {
+                        foreach (GameKey k in key)
+                        {
+                            GameWindow.SendGlobalKeystroke(k, delay);
+                        }
+                    }
                     else
-                        GameWindow.SendGlobalKeybdEvent(key, delay);
+                    {
+                        //foreach (GameKey k in key)
+                        //{
+                            GameWindow.SendGlobalKeybdEvent(key, delay);
+                        //}
+                    }
                 }
             }
 
@@ -510,8 +599,8 @@ namespace OpenTwitchPlays
             {
                 if (menuUsePostMessage.Checked)
                 {
-                    if (!gamewindow.SendMinimizedKeystroke(GameKey.ByKeyString(textSaveCombo.Text), 10))
-                        throw new Exception();
+                    //if (!gamewindow.SendMinimizedKeystroke(GameKey.ByKeyString(textSaveCombo.Text), 10))
+                      //  throw new Exception();
                 }
                 else
                     SendKeys.Send(textSaveCombo.Text);
@@ -548,10 +637,15 @@ namespace OpenTwitchPlays
         /// <param name="thekey">Desired key</param>
         /// <param name="delay">How long the key will be held down</param>
         /// <param name="multiplekeypresses">Allow appending a number to the command for multiple key presses.</param>
-        protected void AddKeyBinding(string command, GameKey thekey, int delay, bool multiplekeypresses)
+        protected void AddKeyBinding(string command, GameKey[] thekey, int delay, bool multiplekeypresses)
         {
             var item = listKeyBindings.Items.Add(command);
-            item.SubItems.Add(thekey.Name);
+            string listofkeys = "";
+            foreach(GameKey k in thekey)
+            {
+                listofkeys = listofkeys + k.Name;
+            }
+            item.SubItems.Add(listofkeys);
             item.SubItems.Add(delay.ToString());
             item.SubItems.Add(multiplekeypresses.ToString());
             item.Tag = thekey;
@@ -583,9 +677,23 @@ namespace OpenTwitchPlays
             RestoreStatus();
 
             foreach (GameKey key in GameKey.List) // keys combobox
+            {
                 comboKeyBindings.Items.Add(key);
+                comboKeyBindings2.Items.Add(key);
+                comboKeyBindings3.Items.Add(key);
+                comboKeyBindings4.Items.Add(key);
+                comboKeyBindings5.Items.Add(key);
+                comboKeyBindings6.Items.Add(key);
+                comboKeyBindings7.Items.Add(key);
+            }
 
             comboKeyBindings.SelectedItem = GameKey.ByName("left"); // left is selected by default
+            comboKeyBindings2.Enabled = false;
+            comboKeyBindings3.Enabled = false;
+            comboKeyBindings4.Enabled = false;
+            comboKeyBindings5.Enabled = false;
+            comboKeyBindings6.Enabled = false;
+            comboKeyBindings7.Enabled = false;
         }
 
         private void menuAbout_Click(object sender, EventArgs e)
@@ -611,9 +719,7 @@ namespace OpenTwitchPlays
         }
 
         private void Form1_Hiding(object sender, FormClosingEventArgs e) {
-            e.Cancel = true;
-            notifyIcon.ShowBalloonTip(2000, null, "OpenTwitchPlays is still running", ToolTipIcon.Info);
-            Hide();
+            SaveAndQuit();            
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -721,9 +827,92 @@ namespace OpenTwitchPlays
             try
             {
                 int delay = 0;
-                GameKey thekey = (GameKey)comboKeyBindings.SelectedItem;
+                
+                if (comboKeyBindings7.SelectedIndex != -1)
+                {
+                    combo = 7;
+                }
+                else if (comboKeyBindings6.SelectedIndex != -1)
+                {
+                    combo = 6;
+                }
+                else if (comboKeyBindings5.SelectedIndex != -1)
+                {
+                    combo = 5;
+                }
+                else if (comboKeyBindings4.SelectedIndex != -1)
+                {
+                    combo = 4;
+                }
+                else if (comboKeyBindings3.SelectedIndex != -1)
+                {
+                    combo = 3;
+                }
+                else if (comboKeyBindings2.SelectedIndex != -1)
+                {
+                    combo = 2;
+                }
+                else
+                {
+                    combo = 1;
+                }
 
-                if (thekey == null || thekey == GameKey.Invalid)
+                GameKey[] thekey = new GameKey[combo];
+
+
+                if (comboKeyBindings7.SelectedIndex != -1)
+                {
+                    thekey[0] = (GameKey)comboKeyBindings.SelectedItem;
+                    thekey[1] = (GameKey)comboKeyBindings2.SelectedItem;
+                    thekey[2] = (GameKey)comboKeyBindings3.SelectedItem;
+                    thekey[3] = (GameKey)comboKeyBindings4.SelectedItem;
+                    thekey[4] = (GameKey)comboKeyBindings5.SelectedItem;
+                    thekey[5] = (GameKey)comboKeyBindings6.SelectedItem;
+                    thekey[6] = (GameKey)comboKeyBindings7.SelectedItem;
+                }
+                else if (comboKeyBindings6.SelectedIndex != -1)
+                {
+                    thekey[0] = (GameKey)comboKeyBindings.SelectedItem;
+                    thekey[1] = (GameKey)comboKeyBindings2.SelectedItem;
+                    thekey[2] = (GameKey)comboKeyBindings3.SelectedItem;
+                    thekey[3] = (GameKey)comboKeyBindings4.SelectedItem;
+                    thekey[4] = (GameKey)comboKeyBindings5.SelectedItem;
+                    thekey[5] = (GameKey)comboKeyBindings6.SelectedItem;
+                }
+                else if (comboKeyBindings5.SelectedIndex != -1)
+                {
+                    thekey[0] = (GameKey)comboKeyBindings.SelectedItem;
+                    thekey[1] = (GameKey)comboKeyBindings2.SelectedItem;
+                    thekey[2] = (GameKey)comboKeyBindings3.SelectedItem;
+                    thekey[3] = (GameKey)comboKeyBindings4.SelectedItem;
+                    thekey[4] = (GameKey)comboKeyBindings5.SelectedItem;
+                }
+                else if (comboKeyBindings4.SelectedIndex != -1)
+                {
+                    thekey[0] = (GameKey)comboKeyBindings.SelectedItem;
+                    thekey[1] = (GameKey)comboKeyBindings2.SelectedItem;
+                    thekey[2] = (GameKey)comboKeyBindings3.SelectedItem;
+                    thekey[3] = (GameKey)comboKeyBindings4.SelectedItem;
+                }
+                else if (comboKeyBindings3.SelectedIndex != -1)
+                {
+                    thekey[0] = (GameKey)comboKeyBindings.SelectedItem;
+                    thekey[1] = (GameKey)comboKeyBindings2.SelectedItem;
+                    thekey[2] = (GameKey)comboKeyBindings3.SelectedItem;
+                }
+                else if (comboKeyBindings2.SelectedIndex != -1)
+                {
+                    thekey[0] = (GameKey)comboKeyBindings.SelectedItem;
+                    thekey[1] = (GameKey)comboKeyBindings2.SelectedItem;
+                }
+                else
+                {
+                    thekey[0] = (GameKey)comboKeyBindings.SelectedItem ;
+                }
+                
+                //GameKey[] thekey = { (GameKey)comboKeyBindings.SelectedItem, (GameKey)comboKeyBindings2.SelectedItem };
+
+                if (thekey == null || thekey[0] == GameKey.Invalid)
                     throw new InvalidOperationException("invalid key");
 
                 try
@@ -778,5 +967,100 @@ namespace OpenTwitchPlays
         private void Form1_Show(object sender, EventArgs e) {
             Show();
         }
+
+        private void checkBoxCombo_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxCombo.Checked)
+            {
+                comboKeyBindings2.Enabled = true;
+                comboKeyBindings3.Enabled = true;
+                comboKeyBindings4.Enabled = true;
+                comboKeyBindings5.Enabled = true;
+                comboKeyBindings6.Enabled = true;
+                comboKeyBindings7.Enabled = true;
+            }
+            else
+            {
+                comboKeyBindings2.Enabled = false;
+                comboKeyBindings3.Enabled = false;
+                comboKeyBindings4.Enabled = false;
+                comboKeyBindings5.Enabled = false;
+                comboKeyBindings6.Enabled = false;
+                comboKeyBindings7.Enabled = false;
+                comboKeyBindings2.SelectedIndex = -1;
+                comboKeyBindings3.SelectedIndex = -1;
+                comboKeyBindings4.SelectedIndex = -1;
+                comboKeyBindings5.SelectedIndex = -1;
+                comboKeyBindings6.SelectedIndex = -1;
+                comboKeyBindings7.SelectedIndex = -1;
+            }
+        }
+
+        private void comboKeyBindings2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void comboKeyBindings3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboKeyBindings2.SelectedIndex == -1 && comboKeyBindings3.SelectedIndex != -1)
+            {
+                comboKeyBindings3.SelectedIndex = -1;
+                MessageBox.Show("No key selected in key 2");
+            }
+        }
+
+        private void comboKeyBindings4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboKeyBindings3.SelectedIndex == -1 && comboKeyBindings4.SelectedIndex != -1)
+            {
+                comboKeyBindings4.SelectedIndex = -1;
+                MessageBox.Show("No key selected in key 3");
+            }
+        }
+
+        private void comboKeyBindings5_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboKeyBindings4.SelectedIndex == -1 && comboKeyBindings5.SelectedIndex != -1)
+            {
+                comboKeyBindings5.SelectedIndex = -1;
+                MessageBox.Show("No key selected in key 4");
+            }
+        }
+
+        private void comboKeyBindings6_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboKeyBindings5.SelectedIndex == -1 && comboKeyBindings6.SelectedIndex != -1)
+            {
+                comboKeyBindings6.SelectedIndex = -1;
+                MessageBox.Show("No key selected in key 5");
+            }
+        }
+
+        private void comboKeyBindings7_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboKeyBindings6.SelectedIndex == -1 && comboKeyBindings7.SelectedIndex != -1)
+            {
+                comboKeyBindings7.SelectedIndex = -1;
+                MessageBox.Show("No key selected in key 6");
+            }
+        }
+
+        private void listKeyBindings_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {            
+            if (WindowState == FormWindowState.Minimized)
+            {                
+                notifyIcon.ShowBalloonTip(2000, null, "OpenTwitchPlays is still running", ToolTipIcon.Info);
+                WindowState = FormWindowState.Normal;
+                Hide();                
+            }
+        }
+
+
     }
 }
